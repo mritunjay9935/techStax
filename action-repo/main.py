@@ -1,0 +1,1 @@
+print("Hello, Mri,mndmldnkc,.mx,sa,d,c,dcas!")

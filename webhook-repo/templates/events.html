@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>GitHub Events</h1>
+<ul id="events-list">
+    <!-- Events will be inserted here -->
+</ul>
+
+<script>
+    function fetchEvents() {
+        fetch('/events')
+            .then(response => response.json())
+            .then(events => {
+                const eventsList = document.getElementById('events-list');
+                eventsList.innerHTML = '';  // Clear the list
+
+                // Add each event to the list
+                for (const event of events) {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = event.message;
+                    eventsList.appendChild(listItem);
+                }
+            });
+    }
+
+    // Fetch events every 15 seconds
+    setInterval(fetchEvents, 15000);
+    fetchEvents();  // Fetch events immediately on page load
+</script>
+</body>
+</html>
